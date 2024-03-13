@@ -3,62 +3,162 @@
 {% block content %}
 
 <style>
-.center {
-  margin: auto;
-  width: 100%;
-  padding: 10px;
-}
+	:root {
+		color-scheme: light dark;
+		--imageBg: white;
+		--cardBg: lightpink;
+		--btnBg: lightgreen;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--imageBg: gray;
+			--cardBg: white;
+			--btnBg: darkGreen;
+		}
+	}
+
+	.body {
+		font-family: system-ui, serif;
+		padding: 3rem;
+	}
+
+	.visual {
+		aspect-ratio: 16 / 9;
+		background: var(--imageBg);
+	}
+
+	.card {
+		text-align: center;
+		padding: 0.5rem;
+		max-width: 260px;
+		padding: 1rem;
+		margin: 0 auto;
+		background: var(--cardBg);
+		border: 1px solid currentColor;
+	}
+
+	.button {
+		padding: 0.5rem;
+		border: 1px solid;
+		font-weight: 600;
+		letter-spacing: 0.1rem;
+		text-transform: uppercase;
+		background-color: var(--btnBg);
+	}
 </style>
 
-	<div class="center">
-					<div class="card", style="background-color: #D9D9D9">
-						<div class="card-block">
-							<h5 class="card-title", style="text-align: center;">
-								Pastries in Stock
-							</h5>
-							<form action="https://www.youtube.com/watch?v=dQw4w9WgXcQ" method="post">
-								<input type="submit" value="placeholder button">
-							</form>
-						</div>
-					</div>
+<div class="card">
+	<div class="visual"></div>
+	<div>
+		<div class="row">
+			<div class="col" align="left">
+				<div class="meta">
+					<h2>20</h2>
 				</div>
+				<p class="desc">Pastries In Stock</p>
+			</div>
+			<button>*arrow image*</button>
+		</div>
+	</div>
+</div>
 
-	<div class="center">
-					<div class="card", style="background-color: #D9D9D9">
-						<div class="card-block">
-							<h5 class="card-title", style="text-align: center;">
-								Scheduled Deliveries
-							</h5>
-							<form action="https://www.youtube.com/watch?v=dQw4w9WgXcQ" method="post">
-								<input type="submit" value="placeholder button">
-							</form>
-						</div>
-					</div>
+<div class="card">
+	<div class="visual"></div>
+	<div>
+		<div class="row">
+			<div class="col" align="left">
+				<div class="meta">
+					<h2>7</h2>
 				</div>
+				<p class="desc">Scheduled Deliveries</p>
+			</div>
+			<button>*arrow image*</button>
+		</div>
+	</div>
+</div>
 
-	<div class="center">
-					<div class="card", style="background-color: #D9D9D9">
-						<div class="card-block">
-							<h5 class="card-title", style="text-align: center;">
-								Listed Things To Do
-							</h5>
-							<form action="https://www.youtube.com/watch?v=dQw4w9WgXcQ" method="post">
-								<input type="submit" value="placeholder button">
-							</form>
-						</div>
-					</div>
+<div class="card">
+	<div class="visual"></div>
+	<div>
+		<div class="row">
+			<div class="col" align="left">
+				<div class="meta">
+					<h2>3</h2>
 				</div>
+				<p class="desc">Listed Things To Do</p>
+			</div>
+			<button>*arrow image*</button>
+		</div>
+	</div>
+</div>
 
-	<div class="center">
-					<div class="card", style="background-color: #D9D9D9">
-						<div class="card-block">
-							<h5 class="card-title", style="text-align: center;">
-								New Messages
-							</h5>
-							<form action="https://www.youtube.com/watch?v=dQw4w9WgXcQ" method="post">
-								<input type="submit" value="placeholder button">
-							</form>
-						</div>
-					</div>
+<div class="card">
+	<div class="visual"></div>
+	<div>
+		<div class="row">
+			<div class="col" align="left">
+				<div class="meta">
+					<h2>5</h2>
 				</div>
+				<p class="desc">New Messages</p>
+			</div>
+			<button>*arrow image*</button>
+		</div>
+	</div>
+</div>
+
+<!--
+<div class="center">
+	<div class="card", style="background-color: #D9D9D9">
+		<div class="card-block">
+			<h5 class="card-title", style="text-align: center;">
+				Pastries in Stock
+			</h5>
+			<form action="https://www.youtube.com/watch?v=dQw4w9WgXcQ" method="post">
+				<input type="submit" value="placeholder button">
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="center">
+	<div class="card", style="background-color: #D9D9D9">
+		<div class="card-block">
+			<h5 class="card-title", style="text-align: center;">
+				Scheduled Deliveries
+			</h5>
+			<form action="https://www.youtube.com/watch?v=dQw4w9WgXcQ" method="post">
+				<input type="submit" value="placeholder button">
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="center">
+	<div class="card", style="background-color: #D9D9D9">
+		<div class="card-block">
+			<h5 class="card-title", style="text-align: center;">
+				Listed Things To Do
+			</h5>
+			<form action="https://www.youtube.com/watch?v=dQw4w9WgXcQ" method="post">
+				<input type="submit" value="placeholder button">
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="center">
+	<div class="card", style="background-color: #D9D9D9">
+		<div class="card-block">
+			<h5 class="card-title", style="text-align: center;">
+				New Messages
+			</h5>
+			<form action="https://www.youtube.com/watch?v=dQw4w9WgXcQ" method="post">
+				<input type="submit" value="placeholder button">
+			</form>
+		</div>
+	</div>
+</div>
+-->
 {% endblock content%}
