@@ -1,105 +1,196 @@
 {% extends 'inventory/main.html' %}
 
+{% load static %}
+	
 {% block content %}
 
-<h1>Dashboard</h1>
+<!-- <h1 class="container-fluid">Inventory</h1>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-12">
-<!--			<div class="row">
-				<div class="portrait">
-					<img src="https://static.wixstatic.com/media/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg/v1/fill/w_625,h_625,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg" style="height: 50%; width: 50%; object-fit: contain;" />
-					<h3>
-						Ingredient
-					</h3>
+		<div class="col-sm-12">
+			<div class="row">
+				<div class=" btn col-sm-6">
+					<div class="card inventory-card">
+						<img class="card-img-top" id="sugar" class="" src="{% static 'inventory/images/sugar.jpg' %}", style="max-height: 500px; max-width: 500px;" />
+						<div class="card-block">
+							<h2 class="card-title", style="text-align: center;">
+								Sugar
+							</h2>
+						</div>
+					</div>
 				</div>
-				<div class="portrait">
-					<img src="https://static.wixstatic.com/media/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg/v1/fill/w_625,h_625,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg" style="height: 50%; width: 50%; object-fit: contain;" />
-					<h3>
-						Ingredient
-					</h3>
-				</div><div class="portrait">
-					<img src="https://static.wixstatic.com/media/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg/v1/fill/w_625,h_625,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg" style="height: 50%; width: 50%; object-fit: contain;" />
-					<h3>
-						Ingredient
-					</h3>
-				</div><div class="portrait">
-					<img src="https://static.wixstatic.com/media/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg/v1/fill/w_625,h_625,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg" style="height: 50%; width: 50%; object-fit: contain;" />
-					<h3>
-						Ingredient
-					</h3>
-				</div><div class="portrait">
-					<img src="https://static.wixstatic.com/media/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg/v1/fill/w_625,h_625,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg" style="height: 50%; width: 50%; object-fit: contain;" />
-					<h3>
-						Ingredient
-					</h3>
-				</div><div class="portrait">
-					<img src="https://static.wixstatic.com/media/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg/v1/fill/w_625,h_625,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg" style="height: 50%; width: 50%; object-fit: contain;" />
-					<h3>
-						Ingredient
-					</h3>
+				<div class="btn col-sm-6 ">
+					<div class="card inventory-card">
+						<img class="card-img-top" id="egg" src="{% static 'inventory/images/egg.jpg' %}", style="max-height: 500px; max-width: 500px;" />
+						<div class="card-block">
+							<h2 class="card-title", style="text-align: center;">
+								Eggs
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div class="btn col-sm-6">
+					<div class="card inventory-card">
+						<img class="card-img-top" id="flour" src="{% static 'inventory/images/flour.jpg' %}" style="max-height: 500px; max-width: 500px;" >
+						<div class="card-block">
+							<h2 class="card-title", style="text-align: center;">
+								Flour
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div class="btn col-sm-6">
+					<div class="card inventory-card">
+						<img class="card-img-top" id="vanilla_extract" src="{% static 'inventory/images/vanilla.jpg' %}" style="max-height: 500px; max-width: 500px;" >
+						<div class="card-block">
+							<h2 class="card-title", style="text-align: center;">
+								Vanilla Extract
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div class=" btn col-sm-6">
+					<div class="card inventory-card">
+						<img class="card-img-top" id="sugar" class="" src="{% static 'inventory/images/sugar.jpg' %}", style="max-height: 500px; max-width: 500px;" />
+						<div class="card-block">
+							<h2 class="card-title", style="text-align: center;">
+								Sugar
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div class="btn col-sm-6 ">
+					<div class="card inventory-card">
+						<img class="card-img-top" id="egg" src="{% static 'inventory/images/egg.jpg' %}", style="max-height: 500px; max-width: 500px;" />
+						<div class="card-block">
+							<h2 class="card-title", style="text-align: center;">
+								Eggs
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div class="btn col-sm-6">
+					<div class="card inventory-card">
+						<img class="card-img-top" id="flour" src="{% static 'inventory/images/flour.jpg' %}" style="max-height: 500px; max-width: 500px;" >
+						<div class="card-block">
+							<h2 class="card-title", style="text-align: center;">
+								Flour
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div class="btn col-sm-6">
+					<div class="card inventory-card">
+						<img class="card-img-top" id="vanilla_extract" src="{% static 'inventory/images/vanilla.jpg' %}" style="max-height: 500px; max-width: 500px;" >
+						<div class="card-block">
+							<h2 class="card-title", style="text-align: center;">
+								Vanilla Extract
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div class=" btn col-sm-6">
+					<div class="card inventory-card">
+						<img class="card-img-top" id="sugar" class="" src="{% static 'inventory/images/sugar.jpg' %}", style="max-height: 500px; max-width: 500px;" />
+						<div class="card-block">
+							<h2 class="card-title", style="text-align: center;">
+								Sugar
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div class="btn col-sm-6 ">
+					<div class="card inventory-card">
+						<img class="card-img-top" id="egg" src="{% static 'inventory/images/egg.jpg' %}", style="max-height: 500px; max-width: 500px;" />
+						<div class="card-block">
+							<h2 class="card-title", style="text-align: center;">
+								Eggs
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div class="btn col-sm-6">
+					<div class="card inventory-card">
+						<img class="card-img-top" id="flour" src="{% static 'inventory/images/flour.jpg' %}" style="max-height: 500px; max-width: 500px;" >
+						<div class="card-block">
+							<h2 class="card-title", style="text-align: center;">
+								Flour
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div class="btn col-sm-6">
+					<div class="card inventory-card">
+						<img class="card-img-top" id="vanilla_extract" src="{% static 'inventory/images/vanilla.jpg' %}" style="max-height: 500px; max-width: 500px;" >
+						<div class="card-block">
+							<h2 class="card-title", style="text-align: center;">
+								Vanilla Extract
+							</h2>
+						</div>
+					</div>
 				</div>
 			</div>
-			-->
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="card", style="background-color: #D9D9D9">
-						<img class="card-img-top", class="" src="https://static.wixstatic.com/media/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg/v1/fill/w_625,h_625,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/659ae1_d7e51be9be6745a5bc5a1d22b1932751~mv2.jpg", style="max-height: 500px; max-width: 500px;" />
-						<div class="card-block">
-							<h5 class="card-title", style="text-align: center;">
-								Ingredient
-							</h5>
-							<p>
-								<a class="btn btn-primary" href="#">Action</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="card", style="background-color: #D9D9D9">
-						<img class="card-img-top" src="https://www.washingtonpost.com/resizer/1RhnmRzobv_b5lzu2YIz381sV8s=/1484x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/4ZLH33AYAAI6TOHGKZYZBQX5BA.jpg", style="max-height: 500px; max-width: 500px;" />
-						<div class="card-block">
-							<h5 class="card-title", style="text-align: center;">
-								Ingredient
-							</h5>
-							<p>
-								<a class="btn btn-primary" href="#">Action</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="card", style="background-color: #D9D9D9">
-						<img class="card-img-top" src="https://cdn2.iconfinder.com/data/icons/bakery-color/200/23-512.png", style="max-height: 500px; max-width: 500px;" />
-						<div class="card-block">
-							<h5 class="card-title", style="text-align: center;">
-								Ingredient
-							</h5>
-							<p>
-								<a class="btn btn-primary" href="#">Action</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="card", style="background-color: #D9D9D9">
-						<img class="card-img-top" src="https://mccormick.widen.net/content/dsa63jtzxu/original/pure_vanilla_extract_800x800.png", style="max-height: 500px; max-width: 500px;" />
-						<div class="card-block">
-							<h5 class="card-title", style="text-align: center;">
-								Ingredient
-							</h5>
-							<p>
-								<a class="btn btn-primary" href="#">Action</a>
-							</p>
-						</div>
-					</div>
-				</div>
 			
+		
+			<div class="row">
+				
 			</div>
 		</div>
+	</div>
+</div> --> 
+
+<h1 class="container-fluid text-center d-lg-none dashboard-num">Dashboard</h1>
+<div class="container-fluid">
+	<div class="row">
+		
+		<div class="btn col-sm-12 col-md-12 col-lg-6">
+			<a href="{% url 'inventory' %}">
+				<div class="card inventory-card flex-row align-items-center text-left" style="gap: 40px;">
+					<img class="dashboard-header-img" src="{% static 'inventory/images/ingredients.jpg' %}"/>
+					<div class="dashboard-label">
+						<h1 class="dashboard-num">24</h1>
+						<h2>Ingredients</h2>
+					</div>
+				</div>
+			</a>
+		</div>
+		
+		<div class="btn col-sm-12 col-md-12 col-lg-6">
+			<a href="{% url 'inventory' %}">
+				<div class="card inventory-card flex-row align-items-center text-left" style="gap: 40px;">
+					<img class="dashboard-header-img" src="{% static 'inventory/images/pastries.jpg' %}"/>
+					<div class="dashboard-label">
+						<h1 class="dashboard-num">18</h1>
+						<h2>Pastries in Stock</h2>
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="btn col-sm-12 col-md-12 col-lg-6">
+			<a href="{% url 'inventory' %}">
+				<div class="card inventory-card flex-row align-items-center text-left" style="gap: 40px;">
+					<img class="dashboard-header-img" src="{% static 'inventory/images/inbox.jpg' %}"/>
+					<div class="dashboard-label">
+						<h1 class="dashboard-num">5</h1>
+						<h2>New Orders</h2>
+					</div>
+				</div>
+			</a>
+		</div>
+		
+		<div class="btn col-sm-12 col-md-12 col-lg-6">
+			<a class="nav-item" href="{% url 'inventory' %}">
+				<div class="card inventory-card flex-row align-items-center text-left" style="gap: 40px;">
+					<img class="dashboard-header-img" src="{% static 'inventory/images/deli.jpg' %}"/>
+					<div class="dashboard-label">
+						<h1 class="dashboard-num">7</h1>
+						<h2>Scheduled Deliveries</h2>
+					</div>
+				</div>
+			</a>
+		</div>
+		
 	</div>
 </div>
 
