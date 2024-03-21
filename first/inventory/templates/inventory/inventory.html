@@ -4,6 +4,41 @@
 
 {% block content %}
 
+<meta charset="UTF-8">
+<meta https-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+	.floating-btn{
+		width: 80px;
+		height: 80px;
+		background: #731436;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		border-radius: 50%;
+		color: white;
+		font-size: 60px;
+		box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+		position: fixed;
+		right: 20px;
+		bottom: 20px;
+		z-index: 10;
+		transition: background 0.25s;
+		outline: blue;
+		border: none;
+		cursor: pointer;
+	}
+
+	.floating-btn:active {
+		background: #621436;
+	}
+</style>
+
+<body>
+	<a href="{% url 'dashboard' %}" class="material-icons floating-btn">+</a>
+</body>
+
 <h1 class="container-fluid text-center d-lg-none">Inventory</h1>
 
 <div class="container-fluid">
