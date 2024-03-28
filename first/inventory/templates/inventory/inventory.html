@@ -81,19 +81,22 @@
 	transform: translate(-50%, -50%) scale(1);
 }
 
-/* MAIN CONTAINER STYLE */
-.btn{
-	
+/* MAIN ITEMS STYLE */
+a.fill-div{
+	display: block;
+	height: 100%;
+	width: 100%;
+	text-decoration: none;
 }
 
 </style>
 
 <body>
-	<a onclick="openPopup()" class="floating-btn">+</a>
+	<a href="{% url 'create_item'%}" class="floating-btn">+</a>
 
 	<div class="popup" id="popup">
 		<img src="{% static 'inventory/images/sugar.jpg' %}">
-		<h2>Item#1</h2>
+		<h2 id="name_text">Item#1</h2>
 		<p>description of item here, placeholder xdxdxdxdxdxd</p>
 		<button type="button" onclick="closePopup()">ADD</button>
 		<button type="button" onclick="closePopup()">CANCEL</button>
@@ -106,6 +109,9 @@
 		function closePopup(){
 			popup.classList.remove("open-popup");
 		}
+		function updatedOpen(){
+		}
+
 	</script>
 
 	<h1 class="container-fluid text-center d-lg-none">Inventory</h1>
@@ -114,14 +120,17 @@
 			<div class="row">
 
 				{% for i in item%}
-				<div class="btn col-sm-6 col-lg-3">
+				<div class="btn col-sm-6 col-lg-3" id="my-div">
 					<div class="card inventory-card">
+						<a href="{%url 'update_item' i.id%}" class="fill-div">
 						<img class="card-img-top" id="sugar" class="" src="{% static 'inventory/images/sugar.jpg' %}", style="max-height: 500px; max-width: 500px;" />
+						</a>
 						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
+							<h2 id="name_header" class="card-title", style="text-align: center;">
 								{{i.name}}
 							</h2>
 						</div>
+						<a href="{%url 'delete_item' i.id%}">DELETE</a>
 					</div>
 				</div>
 				{% endfor %}
