@@ -16,10 +16,9 @@ def customer(request):
 	return render(request, 'inventory/customer.html')
 
 def createItem(request):
-
 	form = itemForm()
 	if request.method == 'POST':
-		form = itemForm(request.POST)
+		form = itemForm(request.POST, request.FILES)
 		if form.is_valid():
 			form.save()
 			return redirect('/inventory')
@@ -32,7 +31,7 @@ def updateItem(request, pk):
 	form = itemForm(instance=item)
 
 	if request.method == 'POST':
-		form = itemForm(request.POST, instance=item)
+		form = itemForm(request.POST, request.FILES, instance=item)
 		if form.is_valid():
 			form.save()
 			return redirect('/inventory')
