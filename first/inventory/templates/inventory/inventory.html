@@ -9,77 +9,83 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 /*	FLOATING BUTTON STYLE*/
-	.floating-btn{
-		width: 80px;
-		height: 80px;
-		background: #731436;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		text-decoration: none;
-		border-radius: 50%;
-		color: white;
-		font-size: 60px;
-		box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-		position: fixed;
-		right: 20px;
-		bottom: 20px;
-		z-index: 5;
-		transition: background 0.25s;
-		outline: blue;
-		border: none;
-		cursor: pointer;
-	}
-	.floating-btn:active {
-		background: #621436;
-	}
+.floating-btn{
+	width: 80px;
+	height: 80px;
+	background: #731436;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	border-radius: 50%;
+	color: white;
+	font-size: 60px;
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	z-index: 5;
+	transition: background 0.25s;
+	outline: blue;
+	border: none;
+	cursor: pointer;
+}
+.floating-btn:active {
+	background: #621436;
+}
 
 /*	POPUP STYLE*/
-	.popup{
-		z-index: 5;
-		width: 400px;
-		background: #fff;
-		border-radius: 50px;
-		position: fixed;
-		top: 0;
-		left: 50%;
-		transform: translate(-50%, -50%) scale(0.1);
-		text-align: center;
-		padding: 0 30px 30px;
-		color: #333;
-		visibility: hidden;
-		transition: transform 0.4s, top 0.4s;
-	}
-	.popup img{
-		max-width: 200px;
-		max-height: 200px;
-		margin-top: -100px;
-		border-radius: 50px;
-		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-	}
-	.popup h2{
-		font-size: 38px;
-		font-weight: 500;
-		margin: 30px 0 10px;
-	}
-	.popup button{
-		width: 100%;
-		margin-top: 20px;
-		padding: 10px 0;
-		background: #621436;
-		color: #fff;
-		border: 0;
-		outline: none;
-		font-size: 18px;
-		border-radius: 25px;
-		cursor: pointer;
-		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-	}
-	.open-popup{
-		visibility: visible;
-		top: 50%;
-		transform: translate(-50%, -50%) scale(1);
-	}
+.popup{
+	z-index: 5;
+	width: 400px;
+	background: #fff;
+	border-radius: 50px;
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.1);
+	text-align: center;
+	padding: 0 30px 30px;
+	color: #333;
+	visibility: hidden;
+	transition: transform 0.4s, top 0.4s;
+}
+.popup img{
+	max-width: 200px;
+	max-height: 200px;
+	margin-top: -100px;
+	border-radius: 50px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+.popup h2{
+	font-size: 38px;
+	font-weight: 500;
+	margin: 30px 0 10px;
+}
+.popup button{
+	width: 100%;
+	margin-top: 20px;
+	padding: 10px 0;
+	background: #621436;
+	color: #fff;
+	border: 0;
+	outline: none;
+	font-size: 18px;
+	border-radius: 25px;
+	cursor: pointer;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+.open-popup{
+	visibility: visible;
+	top: 50%;
+	transform: translate(-50%, -50%) scale(1);
+}
+
+/* MAIN CONTAINER STYLE */
+.btn{
+	
+}
+
 </style>
 
 <body>
@@ -92,207 +98,37 @@
 		<button type="button" onclick="closePopup()">ADD</button>
 		<button type="button" onclick="closePopup()">CANCEL</button>
 	</div>
-<script>
-let popup = document.getElementById("popup");
-function openPopup(){
-	popup.classList.add("open-popup");
-}
-function closePopup(){
-	popup.classList.remove("open-popup");
-}
-</script>
-</body>
+	<script>
+		let popup = document.getElementById("popup");
+		function openPopup(){
+			popup.classList.add("open-popup");
+		}
+		function closePopup(){
+			popup.classList.remove("open-popup");
+		}
+	</script>
 
-<h1 class="container-fluid text-center d-lg-none">Inventory</h1>
-
-<div class="container-fluid">
-	
-	<div class="row">
-		
+	<h1 class="container-fluid text-center d-lg-none">Inventory</h1>
+	<div class="container-fluid">
 		<div class="col-sm-12">
-			
 			<div class="row">
-				
-				<div class=" btn col-sm-6 col-lg-3">
+
+				{% for i in item%}
+				<div class="btn col-sm-6 col-lg-3">
 					<div class="card inventory-card">
 						<img class="card-img-top" id="sugar" class="" src="{% static 'inventory/images/sugar.jpg' %}", style="max-height: 500px; max-width: 500px;" />
 						<div class="card-block">
 							<h2 class="card-title", style="text-align: center;">
-								Sugar
+								{{i.name}}
 							</h2>
 						</div>
 					</div>
 				</div>
-				
-				<div class="btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="egg" src="{% static 'inventory/images/egg.jpg' %}", style="max-height: 500px; max-width: 500px;" />
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Eggs
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class="btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="flour" src="{% static 'inventory/images/flour.jpg' %}" style="max-height: 500px; max-width: 500px;" >
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Flour
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class="btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="vanilla_extract" src="{% static 'inventory/images/vanilla.jpg' %}" style="max-height: 500px; max-width: 500px;" >
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Vanilla Extract
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class=" btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="sugar" class="" src="{% static 'inventory/images/sugar.jpg' %}", style="max-height: 500px; max-width: 500px;" />
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Sugar
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class="btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="egg" src="{% static 'inventory/images/egg.jpg' %}", style="max-height: 500px; max-width: 500px;" />
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Eggs
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class="btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="flour" src="{% static 'inventory/images/flour.jpg' %}" style="max-height: 500px; max-width: 500px;" >
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Flour
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class="btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="vanilla_extract" src="{% static 'inventory/images/vanilla.jpg' %}" style="max-height: 500px; max-width: 500px;" >
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Vanilla Extract
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class=" btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="sugar" class="" src="{% static 'inventory/images/sugar.jpg' %}", style="max-height: 500px; max-width: 500px;" />
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Sugar
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class="btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="egg" src="{% static 'inventory/images/egg.jpg' %}", style="max-height: 500px; max-width: 500px;" />
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Eggs
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class="btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="flour" src="{% static 'inventory/images/flour.jpg' %}" style="max-height: 500px; max-width: 500px;" >
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Flour
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class="btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="vanilla_extract" src="{% static 'inventory/images/vanilla.jpg' %}" style="max-height: 500px; max-width: 500px;" >
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Vanilla Extract
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class=" btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="sugar" class="" src="{% static 'inventory/images/sugar.jpg' %}", style="max-height: 500px; max-width: 500px;" />
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Sugar
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class="btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="egg" src="{% static 'inventory/images/egg.jpg' %}", style="max-height: 500px; max-width: 500px;" />
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Eggs
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class="btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="flour" src="{% static 'inventory/images/flour.jpg' %}" style="max-height: 500px; max-width: 500px;" >
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Flour
-							</h2>
-						</div>
-					</div>
-				</div>
-				
-				<div class="btn col-sm-6 col-lg-3">
-					<div class="card inventory-card">
-						<img class="card-img-top" id="vanilla_extract" src="{% static 'inventory/images/vanilla.jpg' %}" style="max-height: 500px; max-width: 500px;" >
-						<div class="card-block">
-							<h2 class="card-title", style="text-align: center;">
-								Vanilla Extract
-							</h2>
-						</div>
-					</div>
-				</div>
-				
+				{% endfor %}
+
 			</div>
-			
 		</div>
 	</div>
-</div>
+</body>
 
 {% endblock content%}
