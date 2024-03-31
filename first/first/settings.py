@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-5bnx(3e7r!rye0*u#^0cqppr%@kzbs-3s=-uonf#^-0=s=-+eu
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+    
 ALLOWED_HOSTS = ['*']
 
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'inventory',
+    'customer',
 ]
 
 MIDDLEWARE = [
@@ -117,11 +118,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL = 'images/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/images/'
 
 import os
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -129,3 +129,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR.parent, "customer/static"),  # Adjusted to point to the correct 'customer/static' directory
+]
