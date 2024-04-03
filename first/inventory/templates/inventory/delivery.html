@@ -1,0 +1,56 @@
+{% extends 'inventory/main.html' %}
+{% load static %}
+{% block content %}
+<meta charset="UTF-8">
+<meta https-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style type="text/css">
+	/*Button style*/
+	.btn-add { 
+            width: 80px; 
+            height: 80px; 
+            border-radius: 25px; 
+            background: #731436;
+            font-size: 50px; 
+            text-align: center; 
+            border: none;
+            position: fixed;
+            border-radius: 50%;
+            color: white;
+            right: 20px;
+            bottom: 20px;
+        }
+    .lay-div {
+
+    }
+</style>
+<body>
+	<a href="{% url 'create_order'%}" class="btn-add">+</a>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				{% for i in order%}
+				<div class="btn col-12">
+					<div class="card inventory-card">
+						<a href="{%url 'update_item' i.id%}" class="fill-div">
+						</a>
+						<div class="card-block">
+							<h2 id="name_header" class="card-title", style="text-align: left;">
+								{{i.name}}
+							</h2>
+							<h4 style="text-align: left;">
+								{{i.address}}
+							</h4>
+						</div>
+						<a class="delete-btn" href="{%url 'delete_order' i.id%}" style="text-align: right;">DELETE</a>
+					</div>
+				</div>
+				{% endfor %}
+				
+			</div>
+		</div>
+	</div>
+
+</body>
+
+{% endblock content %}
