@@ -14,12 +14,8 @@
     
     {% include 'navbar.html' %}
 
-
-
-
-
     <div class="container mt-4">
-        <h1>Welcome, [Customer Name]!</h1>
+        <h1>Welcome, {{ user.get_full_name }}!</h1> <!-- Fill in the user's full name here -->
         
         <section class="mt-4">
             <h2>Most Sold Products</h2>
