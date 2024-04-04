@@ -21,7 +21,7 @@ def createItem(request):
 		form = itemForm(request.POST, request.FILES)
 		if form.is_valid():
 			form.save()
-			return redirect('/inventory')
+			return redirect('/inventory/inventory')
 
 	context = {'form': form}
 	return render(request, 'inventory/item_form.html', context)
@@ -34,7 +34,7 @@ def updateItem(request, pk):
 		form = itemForm(request.POST, request.FILES, instance=item)
 		if form.is_valid():
 			form.save()
-			return redirect('/inventory')
+			return redirect('/inventory/inventory')
 
 	context = {'form': form}
 	return render(request, 'inventory/item_form.html', context)

@@ -43,12 +43,12 @@ a.fill-div{
 }
 .image-container{
 	position: relative;
-	display: inline-block;
 }
 .image-container img {
 	display: block;
-	max-width: 500px;
 	max-height: 500px;
+	max-width: 500px;
+  	height: 500px;
 }
 .overlay-text {
 	position: absolute;
@@ -62,6 +62,16 @@ a.fill-div{
 	font-weight: bold;
 	font-family: sans-serif;
 	text-align: center;
+}
+.unit-text {
+	font-size: 50px;
+	top: 55%; 
+	left: 50%;
+	color: #8f1436;
+	font-weight: bold;
+	text-shadow: 0 0 3px rgba(0, 0, 0, 0.75); 
+	text-align: right;
+	position: absolute;
 }
 a.delete-btn{
 	-webkit-border-radius: 28;
@@ -104,9 +114,11 @@ a.delete-btn:hover{
 								{% if i.item_pic%}
 								<img class="card-img-top" id="sugar" class="" src="{{ i.item_pic.url }}"/>
 								{% else %}
-								<img class="card-img-top" id="sugar" class="" src="{% static 'inventory/images/sugar.jpg' %}"/>
+								<img class="card-img-top" id="sugar" class="" src="{% static 'inventory/images/img404.jpg' %}"/>
 								{% endif %}
-								<div class="overlay-text">{{i.quantity}}
+								<div class="row">
+									<div class="overlay-text col-10">{{i.quantity}}</div>
+									<div class="unit-text col-2">{{i.unit}}</div>
 								</div>
 							</div>
 						</a>
