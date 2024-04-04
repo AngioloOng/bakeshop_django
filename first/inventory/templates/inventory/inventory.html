@@ -35,20 +35,15 @@
 }
 
 /* MAIN ITEMS STYLE */
-a.fill-div{
-	display: block;
-	height: 100%;
-	width: 100%;
-	text-decoration: none;
-}
 .image-container{
 	position: relative;
+	display: inline-block;
 }
 .image-container img {
 	display: block;
 	max-height: 500px;
 	max-width: 500px;
-  	height: 500px;
+	height: 100vw;
 }
 .overlay-text {
 	position: absolute;
@@ -74,13 +69,11 @@ a.fill-div{
 	position: absolute;
 }
 a.delete-btn{
-	-webkit-border-radius: 28;
-	-moz-border-radius: 28;
 	border-radius: 28px;
 	color: #ffffff;
 	font-size: 20px;
 	background: #ff0000;
-	padding: 10px 100px 10px 35px;
+	padding: 10px 20px 10px 20px;
 	text-decoration: none;
 	max-width: 100px;
 	margin-left: auto;
@@ -91,12 +84,45 @@ a.delete-btn:hover{
 	background: #910000;
 	text-decoration: none;
 }
+a.primary-btn{
+	border-radius: 28px;
+	color: #ffffff;
+	font-size: 20px;
+	background: #008800;
+	padding: 10px 30px 10px 30px;
+	text-decoration: none;
+	max-width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+}
+a.primary-btn:hover{
+	background: #005500;
+	text-decoration: none;
+}
+.btn-container{
+	height: 50px;
+}
 .card-title{
-	font-size: 50px;
+	font-size: 3.0vw;
 	color: #731436;
+	text-align: center;
 }
 .card-img-top:hover{
-	-webkit-filter: brightness(70%);
+	-webkit-filter: opacity(10%);
+}
+.card-desc{
+	border-radius: 50px;
+	position: absolute;
+	text-align: center;
+	height: 50%;
+	font-size: 40px;
+	padding-top: 15px;
+	inline-size: 100%;
+	font-weight: bold;
+	font-family: sans-serif;
+	color: #731436;
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
 }
 </style>
 
@@ -109,25 +135,31 @@ a.delete-btn:hover{
 				{% for i in item%}
 				<div class="btn col-sm-6 col-lg-3" id="my-div">
 					<div class="card inventory-card">
-						<a href="{%url 'update_item' i.id%}" class="fill-div">
-							<div class="image-container">
-								{% if i.item_pic%}
-								<img class="card-img-top" id="sugar" class="" src="{{ i.item_pic.url }}"/>
-								{% else %}
-								<img class="card-img-top" id="sugar" class="" src="{% static 'inventory/images/img404.jpg' %}"/>
-								{% endif %}
-								<div class="row">
-									<div class="overlay-text col-10">{{i.quantity}}</div>
-									<div class="unit-text col-2">{{i.unit}}</div>
-								</div>
+						<div class="card-desc">
+							{{i.description | wordwrap:20 |linebreaksbr }}
+						</div>
+						
+						<div class="image-container">
+							{% if i.item_pic%}
+							<img class="card-img-top" id="sugar" class="" src="{{ i.item_pic.url }}"/>
+							{% else %}
+							<img class="card-img-top" id="sugar" class="" src="{% static 'inventory/images/img404.jpg' %}"/>
+							{% endif %}
+							<div class="row">
+								<div class="overlay-text col-10">{{i.quantity}}</div>
+								<div class="unit-text col-2">{{i.unit}}</div>
 							</div>
-						</a>
+						</div>
+						
 						<div class="card-block">
-							<h2 id="name_header" class="card-title", style="text-align: center;">
+							<h2 id="name_header" class="card-title">
 								{{i.name}}
 							</h2>
 						</div>
-						<a class="delete-btn" href="{%url 'delete_item' i.id%}">DELETE</a>
+						<div class="btn-container">
+							<a class="primary-btn" href="{%url 'update_item' i.id%}">EDIT</a>
+							<a class="delete-btn" href="{%url 'delete_item' i.id%}">DELETE</a>
+						</div>
 					</div>
 				</div>
 				{% endfor %}
