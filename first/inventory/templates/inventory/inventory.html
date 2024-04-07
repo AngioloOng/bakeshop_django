@@ -9,26 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 /*MAIN STYLE*/
-body {
-	background-color: #F2F2F0;
-}
-a.disabled {
-	pointer-events: none;
-}
-a:hover {
-	text-decoration: none;
-}
-.dashboard-header-img {
-	border-top-left-radius: 50px;
-	border-bottom-left-radius: 50px;
-	max-height: 200px;
-}
-.dashboard-num {
-	font-size: 80px;
-}
-.dashboard-label {
-	color: #59112B;
-}
 
 /*	FLOATING BUTTON STYLE*/
 .floating-btn{
@@ -220,7 +200,13 @@ a.primary-btn:hover{
 <body>
 	{%for i in item%}
 	<div class="popup" id="popup_{{forloop.counter}}">
-		<img src="{% static 'inventory/images/sugar.jpg' %}">
+		{% if i.item_pic %}
+		<img src="{{ i.item_pic.url }}"/>
+
+		{% else %}
+		<img src="{% static 'inventory/images/img404.jpg' %}"/>
+
+		{% endif %}
 		<h2 id="name-header">{{i.name}}</h2>
 		<p>{{i.description}}</p>
 		<a onclick="" class="edit-btn" href="{%url 'update_item' i.id%}">EDIT</a>
@@ -277,7 +263,7 @@ a.primary-btn:hover{
 
 					<!-- BUTTONS -->
 					<div class="btn-container">
-						<a href="#" class="primary-btn" onclick="openPopup({{forloop.counter}})">INFO</a>
+						<a href="#!" class="primary-btn" onclick="openPopup({{forloop.counter}})">INFO</a>
 						<a class="delete-btn" href="{%url 'delete_item' i.id%}">DELETE</a>
 					</div>
 				</div>
