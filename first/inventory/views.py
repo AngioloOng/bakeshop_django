@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from .forms import itemForm
+from .forms import orderForm
 
 # Create your views here.
 
@@ -47,3 +48,42 @@ def deleteItem(request, pk):
 		return redirect('inventory')
 	context = {'item': item}
 	return render(request, 'inventory/delete.html', context)
+
+def delivery(request):
+	order = inventoryOrder.objects.all()
+	return render(request, 'inventory/delivery.html', {'order': order})
+
+def createDeliveryOrder(request):
+	form = orderForm()
+	if request.method == 'POST':
+		form = orderForm(request.POST, request.FILES)
+		if form.is_valid():
+			form.save()
+			return redirect('/inventory/delivery')
+
+	context = {'form': form}
+	return render(request, 'inventory/order_form.html', context)
+
+def updateDeliveryOrder(request, pk):
+	order = inventoryOrder.objects.get(id=pk)
+	form = orderForm(instance=order)
+
+	if request.method == 'POST':
+		form = orderForm(request.POST, request.FILES, instance=order)
+		if form.is_valid():
+			form.save()
+			return redirect('/inventory/delivery')
+
+	context = {'form': form}
+	return render(request, 'inventory/order_form.html', context)
+
+def deleteDeliveryOrder(request,pk):
+	order = inventoryOrder.objects.get(id=pk)
+
+	if request.method == "POST":
+		order.delete()
+		return redirect('/inventory/delivery')
+
+	context = {'order': order}
+	return render(request, 'inventory/delete_order.html', context)
+

@@ -1,0 +1,84 @@
+{% extends 'inventory/main.html' %}
+{% load static %}
+{% block content %}
+<meta charset="UTF-8">
+<meta https-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style type="text/css">
+	/*Button style*/
+	.btn-add { 
+            width: 80px; 
+            height: 80px; 
+            border-radius: 25px; 
+            background: #731436;
+            font-size: 50px; 
+            text-align: center; 
+            border: none;
+            position: fixed;
+            border-radius: 50%;
+            color: white;
+            right: 20px;
+            bottom: 20px;
+        }
+
+    a.delete-btn{
+			border-radius: 28px;
+			color: #ffffff;
+			font-size: 20px;
+			background: #ff0000;
+			padding: 10px 20px 10px 20px;
+			text-decoration: none;
+			max-width: 100px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 10px;
+		}
+	a.inventory-card-delivery{
+		border-radius: 10px;
+	}
+	a.delete-btn{
+		position: absolute;
+        bottom: 10px;
+        right: 10px;
+	}
+
+
+</style>
+<body>
+	<a href="{% url 'create_order'%}" class="btn-add">+</a>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				{% for i in order%}
+				<div class="btn col-12">
+					<div class="card inventory-card-delivery">
+						<a href="{%url 'update_item' i.id%}" class="fill-div">
+						</a>
+						<div class="card-block">
+							<h2 id="name_header" class="card-title", style="text-align: left;">
+								Name: {{i.name}}
+							</h2>
+							<h4 style="text-align: left;">
+								Address: {{i.address}}
+							</h4>
+							<h4 style="text-align: left;">
+								Paid Status: {{i.paid_Status}}
+							</h4>
+							<h4 style="text-align: left;">
+								Order: {{i.order}}
+							</h4>
+						</div>
+						<div class="btn-container">
+							<a class="delete-btn" href="{%url 'deleteDelivOrder' i.id%}" style="text-align: right;">DELETE</a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+			</div>
+		</div>
+	</div>
+
+</body>
+
+{% endblock content %}
