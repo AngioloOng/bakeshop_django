@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
+from django.shortcuts import render, redirect
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from .models import User
 from .models import Product
@@ -7,15 +9,11 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import check_password 
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User as DjangoUser
-
+from .models import Product
 
 def customer_home(request):
     # Home page view, possibly a landing page or product listing
     return render(request, 'customer_home.html')
-
-
-
-from django.contrib.auth import authenticate, login
 
 def customer_login(request):
     if request.method == 'POST':
@@ -68,7 +66,6 @@ def customer_dashboard(request):
     user = request.user
     return render(request, 'customerDashboard.html', {'user': user})
 
-
 def customer_about(request):
     # Logic for the "About" page can be added here
     return render(request, 'customerAbout.html')  # Point to the correct template
@@ -93,12 +90,11 @@ def support_messages(request):
     # Logic for displaying support messages
     return render(request, 'customerMessages.html')  # Ensure you have this template
 
-
-
-
 def view_users(request):
     users = User.objects.all()  
     return render(request, 'view_users.html', {'users': users})
+
+
 
 
 # Your other view functions...
@@ -165,3 +161,19 @@ def send_message(request):
     else:
         # Handle the case where the message is empty or invalid
         return HttpResponse('Invalid message content', status=400)
+
+
+
+# customer/views.py
+
+from django.shortcuts import render
+from inventory.models import inventoryItem  # Adjust the import based on your model name and app
+
+def customer_dashboard(request):
+    items = inventoryItem.objects.all()  # Fetch all inventory items
+    return render(request, 'customerDashboard.html', {'items': items})
+
+
+def cart_view(request):
+    # Your cart handling logic here
+    return render(request, 'cart.html')  # Update with your actual cart template
