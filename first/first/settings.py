@@ -133,5 +133,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR.parent, "customer/static"),  # Adjusted to point to the correct 'customer/static' directory
+    os.path.join(BASE_DIR, "customer/static"),  # Adjusted to point to the correct 'customer/static' directory
 ]

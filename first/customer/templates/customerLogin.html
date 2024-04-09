@@ -1,3 +1,4 @@
+<!-- customerLogin.html -->
 {% load static %}
 
 <!DOCTYPE html>
@@ -14,7 +15,8 @@
     
     <div class="login-container">
         <h1>Welcome to Cakeaholic</h1>
-        <form id="loginForm">
+        <form id="loginForm" method="post" action="{% url 'customer_login' %}">
+            {% csrf_token %}
             <div class="input-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
@@ -24,10 +26,10 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <button type="submit">Login</button>
-            <p>Don't have an account? <a href="customerSignUp.html">Sign up</a></p>
+            <p>Don't have an account? <a href="{% url 'customer_signup' %}">Sign up</a></p> <!-- Fixed signup link -->
         </form>
     </div>
 
-    <script src="{% static 'customer/script.js' %}"></script>
+    
 </body>
 </html>
