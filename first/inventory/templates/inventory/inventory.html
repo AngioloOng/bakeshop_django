@@ -209,7 +209,7 @@ a.primary-btn:hover{
 		{% endif %}
 		<h2 id="name-header">{{i.name}}</h2>
 		<p>{{i.description}}</p>
-		<a onclick="" class="edit-btn" href="{%url 'update_item' i.id%}">EDIT</a>
+		<a onclick="" class="edit-btn" href="{%url 'inventory:update_item' i.id%}">EDIT</a>
 		<button type="button" onclick="closePopup({{forloop.counter}})">CANCEL</button>
 	</div>
 	{%endfor%}
@@ -235,7 +235,7 @@ a.primary-btn:hover{
 		
 	</script>
 
-	<a href="{% url 'create_item'%}" class="floating-btn">+</a>
+	<a href="{% url 'inventory:create_item'%}" class="floating-btn">+</a>
 
 	<div class="col">
 		<div class="row">
@@ -250,7 +250,7 @@ a.primary-btn:hover{
 						<img class="card-img-top" src="{{ i.item_pic.url }}"/>
 
 						{% else %}
-						<img class="card-img-top" src="{% static 'inventory/images/img404.jpg' %}"/>
+						<img class="card-img-top" src="{% static 'inventory:images/img404.jpg' %}"/>
 
 						{% endif %}
 
@@ -264,7 +264,7 @@ a.primary-btn:hover{
 					<!-- BUTTONS -->
 					<div class="btn-container">
 						<a href="#!" class="primary-btn" onclick="openPopup({{forloop.counter}})">INFO</a>
-						<a class="delete-btn" href="{%url 'delete_item' i.id%}">DELETE</a>
+						<a class="delete-btn" href="{%url 'inventory:delete_item' i.id%}">DELETE</a>
 					</div>
 				</div>
 			</div>
