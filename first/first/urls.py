@@ -23,11 +23,12 @@ from inventory.views import home  # Adjust the import based on where your view i
 
 
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
     path('inventory/', include('inventory.urls')),
     path('customer/', include('customer.urls')),
-    
     path('', home, name='home'),  # Direct the root path to the home view
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

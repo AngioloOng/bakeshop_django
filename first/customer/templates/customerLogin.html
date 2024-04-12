@@ -15,7 +15,7 @@
     
     <div class="login-container">
         <h1>Welcome to Cakeaholic</h1>
-        <form id="loginForm" method="post" action="{% url 'customer_login' %}">
+        <form id="loginForm" method="post" action="{% url 'customer:customer_login' %}">
             {% csrf_token %}
             <div class="input-group">
                 <label for="email">Email</label>
@@ -26,7 +26,7 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <button type="submit">Login</button>
-            <p>Don't have an account? <a href="{% url 'customer_signup' %}">Sign up</a></p> <!-- Fixed signup link -->
+            <p>Don't have an account? <a href="{% url 'customer:customer_signup' %}">Sign up</a></p> <!-- Fixed signup link -->
         </form>
     </div>
 

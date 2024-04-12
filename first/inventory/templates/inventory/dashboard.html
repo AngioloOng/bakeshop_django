@@ -9,7 +9,7 @@
 	<div class="row">
 		
 		<div class="btn col-sm-12 col-md-12 col-lg-6">
-			<a href="{% url 'inventory' %}">
+			<a href="{% url 'inventory:inventory' %}">
 				<div class="card inventory-card flex-row align-items-center text-left" style="gap: 40px;">
 					<img class="dashboard-header-img" src="{% static 'inventory/images/ingredients.jpg' %}"/>
 					<div class="dashboard-label">
@@ -21,7 +21,7 @@
 		</div>
 		
 		<div class="btn col-sm-12 col-md-12 col-lg-6">
-			<a href="{% url 'inventory' %}">
+			<a href="{% url 'inventory:inventory' %}">
 				<div class="card inventory-card flex-row align-items-center text-left" style="gap: 40px;">
 					<img class="dashboard-header-img" src="{% static 'inventory/images/pastries.jpg' %}"/>
 					<div class="dashboard-label">
@@ -33,7 +33,7 @@
 		</div>
 
 		<div class="btn col-sm-12 col-md-12 col-lg-6">
-			<a href="{% url 'inventory' %}">
+			<a href="{% url 'inventory:inventory' %}">
 				<div class="card inventory-card flex-row align-items-center text-left" style="gap: 40px;">
 					<img class="dashboard-header-img" src="{% static 'inventory/images/inbox.jpg' %}"/>
 					<div class="dashboard-label">
@@ -45,7 +45,7 @@
 		</div>
 		
 		<div class="btn col-sm-12 col-md-12 col-lg-6">
-			<a class="nav-item" href="{% url 'delivery' %}">
+			<a class="nav-item" href="{% url 'inventory:delivery' %}">
 				<div class="card inventory-card flex-row align-items-center text-left" style="gap: 40px;">
 					<img class="dashboard-header-img" src="{% static 'inventory/images/deli.jpg' %}"/>
 					<div class="dashboard-label">

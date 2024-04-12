@@ -2,6 +2,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
 
+app_name = 'customer'
 urlpatterns = [
     path('', views.customer_home, name='customer_home'),
     path('customer_dashboard/', views.customer_dashboard, name='customer_dashboard'),

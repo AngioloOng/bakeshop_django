@@ -13,6 +13,10 @@ def inventory(request):
 	item = inventoryItem.objects.all()
 	return render(request, 'inventory/inventory.html', {'item': item})
 
+def inventory_dashboard(request):
+	return render(request, 'inventory/dashboard.html')
+
+
 def customer(request):
 	return render(request, 'inventory/customer.html')
 

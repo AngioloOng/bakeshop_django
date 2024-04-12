@@ -11,9 +11,6 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User as DjangoUser
 from .models import Product
 
-def customer_home(request):
-    # Home page view, possibly a landing page or product listing
-    return render(request, 'customer_home.html')
 
 def customer_login(request):
     if request.method == 'POST':
@@ -173,6 +170,11 @@ def customer_dashboard(request):
     items = inventoryItem.objects.all()  # Fetch all inventory items
     return render(request, 'customerDashboard.html', {'items': items})
 
+
+def customer_home(request):
+    # Home page view, possibly a landing page or product listing
+    items = inventoryItem.objects.all()  # Retrieve all products from the database
+    return render(request, 'customer_home.html', {'items': items})
 
 def cart_view(request):
     # Your cart handling logic here
