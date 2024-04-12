@@ -25,4 +25,9 @@ urlpatterns = [
     path('dashboard/', views.customer_dashboard, name='customer_dashboard'),
     path('cart/', views.cart_view, name='cart'),  # Adding the URL pattern for the cart
     path('view_users/', views.view_users, name='view_users'),
+    
+    # CART
+    path('save-cart/', views.save_cart, name='save_cart'),
+    
+    
 ]

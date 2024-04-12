@@ -179,3 +179,43 @@ def customer_home(request):
 def cart_view(request):
     # Your cart handling logic here
     return render(request, 'cart.html')  # Update with your actual cart template
+
+
+
+import logging
+
+# Create a logger object
+logger = logging.getLogger(__name__)
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .models import CartItem
+import json
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .models import CartItem
+import logging
+
+logger = logging.getLogger(__name__)
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .models import CartItem  # Assuming you have a CartItem model
+import json
+
+@csrf_exempt
+def save_cart(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        try:
+            for item in data.get('cartItems', []):
+                # Create CartItem for each item in the cart
+                CartItem.objects.create(
+                    name=item['name'],
+                    price=item['price'],
+                    quantity=item['quantity']
+                )
+            return JsonResponse({"status": "success", "message": "Cart saved successfully"})
+        except Exception as e:
+            return JsonResponse({"status": "error", "message": str(e)}, status=400)
+    return JsonResponse({"status": "error", "message": "Invalid request method"}, status=400)

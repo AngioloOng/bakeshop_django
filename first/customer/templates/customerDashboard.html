@@ -84,15 +84,17 @@
 <body>
 
 {% include 'navbar.html' %}
-
+{% comment %} 
 <!-- Cart Popup -->
 <div id="cartPopup" class="cart-popup" style="display:none;">
     <h5>Cart Items</h5>
     <div id="cartItems"></div>
     <div class="text-end">
-        <button class="btn btn-secondary">Checkout</button>
+        <button id="checkoutButton" class="btn btn-primary">Checkout</button>
     </div>
-</div>
+</div> {% endcomment %}
+
+
 
 {% block content %}
 <div class="container mt-5">
