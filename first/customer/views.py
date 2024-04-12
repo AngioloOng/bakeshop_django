@@ -59,7 +59,7 @@ def customer_signup(request):
             
             messages.success(request, 'Registration successful. Please login.')  
 
-            return redirect('customer_login')
+            return redirect('customer:customer_login')
 
     return render(request, 'customerSignUp.html')
 
@@ -68,7 +68,7 @@ def customer_dashboard(request):
     return render(request, 'customerDashboard.html', {'items': items})
 
 def customer_about(request):
-    # Logic for the "About" page can be added here
+    
     return render(request, 'customerAbout.html')  # Point to the correct template
 
 def view_products(request):
