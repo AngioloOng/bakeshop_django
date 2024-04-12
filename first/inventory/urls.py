@@ -10,7 +10,7 @@ urlpatterns = [
     
     
     # path('', views.home, name="dashboard"),
-    path('dashboard/', views.inventory, name='dashboard'),
+    path('dashboard/', views.inventory_dashboard, name='dashboard'),
     path('inventory/', views.inventory, name='inventory'),
 
     path('admin/', admin.site.urls),

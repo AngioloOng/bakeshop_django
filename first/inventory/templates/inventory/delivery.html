@@ -44,15 +44,16 @@
 
 
 </style>
+
 <body>
-	<a href="{% url 'customer:create_order'%}" class="btn-add">+</a>
+	<a href="{% url 'inventory:create_order'%}" class="btn-add">+</a>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-12">
 				{% for i in order%}
 				<div class="btn col-12">
 					<div class="card inventory-card-delivery">
-						<a href="{%url 'update_item' i.id%}" class="fill-div">
+						<a href="{%url 'inventory:update_item' i.id%}" class="fill-div">
 						</a>
 						<div class="card-block">
 							<h2 id="name_header" class="card-title", style="text-align: left;">
@@ -69,7 +70,7 @@
 							</h4>
 						</div>
 						<div class="btn-container">
-							<a class="delete-btn" href="{%url 'deleteDelivOrder' i.id%}" style="text-align: right;">DELETE</a>
+							<a class="delete-btn" href="{%url 'inventory:deleteDelivOrder' i.id%}" style="text-align: right;">DELETE</a>
 						</div>
 					</div>
 				</div>
