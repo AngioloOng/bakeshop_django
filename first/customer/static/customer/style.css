@@ -95,11 +95,17 @@ a:hover {
 }
 
 
+/* 
 
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+    .product-card {
+        flex-direction: column;
+    }
+} */
 
-
-
-/* DASHBOARD */
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -117,22 +123,34 @@ body {
     margin: 0; /* Remove any default margin */
 }
 
-.navbar {
-    background-color: #731436; /* Deep red color */
+/* Ensuring the navbar has the right color */
+body .navbar {
+    background-color: #731436 !important; /* Deep red color, ensure it applies with !important */
+    color: white;
+}
 
-    background: #731436;
-    color: #fff;
-    padding: 10px 20px;
+body .navbar-brand, body .nav-link {
+    color: white !important; /* Ensures text color is white */
+}
+
+body .nav-link:hover, body .logout-button:hover {
+    background-color: #000000 !important; /* Darker color on hover */
+    border-radius: 5px; /* Rounded corners for a nice hover effect */
+}
+
+
+.navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+    z-index: 1030;  /* Ensure it's above other content */
+    background-color: #731436; /* Assuming this is your brand color */
+    color: white;
+    padding: 10px 20px;
 }
+
+
 
 .navbar-brand, .nav-link, .logout-button {
     color: #fff;
@@ -145,6 +163,7 @@ body {
     background-color: #000000;
     border-radius: 5px;
 }
+
 
 .logout-button {
     border: 1px solid #fff; /* Make logout look like a button */
@@ -295,6 +314,26 @@ body {
 
 /* ABOUT */
 
+.container-fluid {
+    display: flex;  /* Enables flexbox */
+    flex-wrap: wrap;  /* Allows items to wrap to the next line */
+    justify-content: center;  /* Centers items horizontally */
+    align-items: center;  /* Centers items vertically */
+    padding: 20px;  /* Adds some padding around the items */
+    min-height: 80vh;  /* Optional: Gives a minimum height to the container */
+}
+
+.row {
+    justify-content: center;  /* Centers columns horizontally within the row */
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Centers content within each column if needed */
+}
+
+
 .about-container {
     max-width: 800px;
     margin: 40px auto;
@@ -349,6 +388,20 @@ body {
 /* DASHBOARD CSS */
 
 /* Enhances Bootstrap card styling for product display */
+
+/* Ensure cards are centered and have maximum limits */
+.card {
+    max-width: 100%;  /* Ensures card does not exceed the column width */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
 .card.mb-4.shadow-sm {
     border-radius: 10px; /* Rounded corners for the card */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
@@ -387,6 +440,13 @@ body {
     font-size: 14px; /* Smaller font size for metadata */
     color: #666; /* Lighter color for subtlety */
 }
+
+.col {
+    flex-grow: 1;  /* Allows the column to grow to fill available space */
+    min-width: 250px; /* Minimum width before a new row starts */
+    max-width: 300px; /* Maximum width of each card */
+}
+
 
 /* If you have action buttons within your cards, add styles here */
 
