@@ -118,7 +118,9 @@ body {
 }
 
 .navbar {
-    background: #000000;
+    background-color: #731436; /* Deep red color */
+
+    background: #731436;
     color: #fff;
     padding: 10px 20px;
     position: fixed;

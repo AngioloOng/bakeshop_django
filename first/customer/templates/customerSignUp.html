@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Cakeaholic</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'customer/style.css' %}">
 </head>
 <body>
 
@@ -14,7 +14,7 @@
     
     <div class="signup-container">
         <h1>Join Cakeaholic</h1>
-        <form id="signupForm" method="post" action="{% url 'customer_signup' %}">
+        <form id="signupForm" method="post" action="{% url 'customer:customer_signup' %}">
                {% csrf_token %}
     <div class="input-group">
         <label for="name">Name</label>
