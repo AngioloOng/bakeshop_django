@@ -7,10 +7,10 @@
 		<div class="card card-body">
 			<p>Are you sure you want to delete "{{item}}"?</p>
 
-			<form action="{% url 'delete_item' item.id %}" method="POST">
+			<form action="{% url 'inventory:delete_item' item.id %}" method="POST">
 
 				{% csrf_token %}
-				<a class="btn btn-warning" href="{% url 'inventory'%}">Cancel</a>
+				<a class="btn btn-warning" href="{% url 'inventory:inventory'%}">Cancel</a>
 				<input class="btn btn-danger" type="submit" name="Confirm" value="Submit">
 			</form>
 		</div>

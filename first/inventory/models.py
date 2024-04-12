@@ -14,12 +14,12 @@ from django.db import models
 
 from django.db import models
 
-class Vendor(models.Model):
-    name = models.CharField(max_length=100)
-    # Add other vendor fields as needed
+# class Vendor(models.Model):
+#     name = models.CharField(max_length=100)
+#     # Add other vendor fields as needed
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 class inventoryItem(models.Model):
     name = models.CharField(max_length=100, null=True)
@@ -27,7 +27,8 @@ class inventoryItem(models.Model):
     quantity = models.FloatField(null=True)
     unit = models.CharField(max_length=5, null=True)
     item_pic = models.ImageField(null=True, blank=True)
-    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
+    # price = models.DecimalField(max_digits=8, decimal_places=2, null=True)  # Adding a price field
+    # vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name

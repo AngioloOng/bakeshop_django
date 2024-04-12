@@ -44,14 +44,26 @@ def updateItem(request, pk):
 	context = {'form': form}
 	return render(request, 'inventory/item_form.html', context)
 
-def deleteItem(request, pk):
-	item = inventoryItem.objects.get(id=pk)
+# def deleteItem(request, pk):
+# 	item = inventoryItem.objects.get(id=pk)
 
-	if request.method == "POST":
-		item.delete()
-		return redirect('inventory')
-	context = {'item': item}
-	return render(request, 'inventory/delete.html', context)
+# 	if request.method == "POST":
+# 		item.delete()
+# 		return redirect('inventory')
+# 	context = {'item': item}
+# 	return render(request, 'inventory/delete.html', context)
+
+from django.shortcuts import render, redirect, get_object_or_404
+
+def deleteItem(request, pk):
+    # Use get_object_or_404 to safely get the item
+    item = get_object_or_404(inventoryItem, id=pk)
+    if request.method == "POST":
+        item.delete()
+        return redirect('inventory:inventory')  # Ensure this redirect is correct
+    context = {'item': item}
+    return render(request, 'inventory/delete.html', context)
+
 
 def delivery(request):
 	order = inventoryOrder.objects.all()
