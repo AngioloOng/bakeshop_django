@@ -38,7 +38,7 @@
         <input type="password" id="confirmPassword" name="confirmPassword" required>
     </div>
     <button type="submit">Sign Up</button>
-    <p>Already have an account? <a href="customerLogin.html">Login</a></p>
+    <p>Already have an account? <a href="{% url 'customer:customer_login' %}">Login</a></p>
 </form>
 
 {% if messages %}
