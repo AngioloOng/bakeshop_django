@@ -138,32 +138,31 @@ body .nav-link:hover, body .logout-button:hover {
     border-radius: 5px; /* Rounded corners for a nice hover effect */
 }
 
-
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1030;  /* Ensure it's above other content */
-    background-color: #731436; /* Assuming this is your brand color */
-    color: white;
-    padding: 10px 20px;
+    z-index: 1030; /* High z-index to ensure navbar stays on top */
+    background-color: #731436; /* Brand color */
+    padding: 0.5rem 1rem; /* Adjust padding to ensure adequate space for items */
 }
-
-
 
 .navbar-brand, .nav-link, .logout-button {
     color: #fff;
     text-decoration: none;
-    padding: 10px;
-    margin: 0 5px; /* Adjust spacing between links */
+    padding: 10px 15px; /* Sufficient padding for clickable area */
+    margin-right: 5px; /* Space between items */
 }
 
-.nav-link:hover, .logout-button:hover {
-    background-color: #000000;
+.navbar-toggler {
+    border-color: rgba(255,255,255,0.5); /* Lighter border for toggle icon */
+}
+
+.nav-link:hover, .logout-button:hover, .navbar-brand:hover {
+    background-color: #5a0e2d; /* Slightly darker shade for hover state */
     border-radius: 5px;
 }
-
 
 .logout-button {
     border: 1px solid #fff; /* Make logout look like a button */
@@ -486,6 +485,13 @@ body .nav-link:hover, body .logout-button:hover {
     border-bottom: none;
 }
 
+.cart-icon-container {
+    display: flex;
+    align-items: center;
+    position: relative; /* Position relative to place the count badge correctly */
+}
+
+
 /* Styles for the payment mode section */
 .payment-mode {
     margin-top: 20px;
@@ -501,23 +507,6 @@ body .nav-link:hover, body .logout-button:hover {
     margin-top: 20px;
 }
 
-/* Styles for Cart Icon and Count Badge */
-#cartButton {
-    position: relative;
-    display: inline-block;
-}
-
-#cartCount {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background-color: #dc3545;
-    color: #fff; /* Text color for the count badge */
-    border-radius: 50%;
-    padding: 5px;
-    font-size: 0.8rem;
-}
-
 
 
 
@@ -530,6 +519,3 @@ body .nav-link:hover, body .logout-button:hover {
     text-align: center; /* Center the quantity number */
 }
 
-.cart-icon-container {
-    margin-left: auto;
-}
