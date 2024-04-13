@@ -1,0 +1,33 @@
+{% extends 'inventory/main.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Order List</h2>
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.name }}</td>
+                <td>${{ order.price }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm" onclick="deleteOrder('{{ order.id }}')">Delete</button>
+                    <button class="btn btn-primary btn-sm" onclick="editOrder('{{ order.id }}')">Edit</button>
+                    <button class="btn btn-success btn-sm" onclick="completeOrder('{{ order.id }}')">Complete</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

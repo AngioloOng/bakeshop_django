@@ -1,17 +1,41 @@
 console.log("script.js is loaded and running");
 
-TOGGLE CART POPUP
+// AJAX
+headers: {
+    'Content-Type'; 'application/json',
+    'X-CSRFToken'; getCookie('csrftoken')  // Call directly here
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// TOGGLE CART POPUP
 cartButton.addEventListener('click', function() {
+    console.log('Cart button clicked.');
     console.log('Current display:', cartPopup.style.display); // Add this to debug
     cartPopup.style.display = cartPopup.style.display === 'none' ? 'block' : 'none';
 });
+
+var cart = {}; // Global scope
 
 document.addEventListener('DOMContentLoaded', function() {
     const cartButton = document.getElementById('cartButton');
     const cartPopup = document.getElementById('cartPopup');
     const cartItems = document.getElementById('cartItems');
     const cartCount = document.getElementById('cartCount');
-    let cart = {};
 
     // Add items to the cart
     document.querySelectorAll('.add-to-cart').forEach(button => {
@@ -63,48 +87,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+
 });
 
-
-document.getElementById('checkoutButton').addEventListener('click', function() {
-    const cartData = {
-        cartItems: Object.values(cart) // assuming 'cart' is your cart object
-    };
-
-    fetch('/save-cart/', { // Ensure this URL matches your Django URL configuration
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrftoken // This assumes you've correctly handled CSRF token
-        },
-        body: JSON.stringify(cartData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        alert("Checkout successful!"); // Provide some user feedback
-    })
-    .catch(error => console.error('Error:', error));
-});
-
-
-// Function to get CSRF token from cookies
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-
-
+// // Function to get CSRF token from cookies
+// function getCookie(name) {
+//     let cookieValue = null;
+//     if (document.cookie && document.cookie !== '') {
+//         const cookies = document.cookie.split(';');
+//         for (let i = 0; i < cookies.length; i++) {
+//             const cookie = cookies[i].trim();
+//             if (cookie.substring(0, name.length + 1) === (name + '=')) {
+//                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+//                 break;
+//             }
+//         }
+//     }
+//     return cookieValue;
+// }
 
 // Helper function to get CSRF token
 function getCookie(name) {

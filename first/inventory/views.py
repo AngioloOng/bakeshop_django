@@ -17,6 +17,16 @@ def inventory_dashboard(request):
 	return render(request, 'inventory/dashboard.html')
 
 
+
+from customer.models import CartItem
+def new_order(request):
+    orders = CartItem.objects.all()
+    return render(request, 'inventory/new_orders.html', {'orders': orders})
+	
+
+
+
+
 def customer(request):
 	return render(request, 'inventory/customer.html')
 
@@ -30,6 +40,10 @@ def createItem(request):
 
 	context = {'form': form}
 	return render(request, 'inventory/item_form.html', context)
+
+
+
+
 
 def updateItem(request, pk):
 	item = inventoryItem.objects.get(id=pk)

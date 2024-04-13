@@ -12,7 +12,7 @@ urlpatterns = [
     
     path('dashboard/', views.inventory_dashboard, name='dashboard'),
     path('inventory/', views.inventory, name='inventory'),
-
+    path('new_order/', views.new_order, name='new_order'),
     path('admin/', admin.site.urls),
     path('customer/', include('customer.urls', namespace='customer')),
     path('create_item/', views.createItem, name='create_item'),

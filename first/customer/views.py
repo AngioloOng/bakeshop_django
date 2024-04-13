@@ -165,8 +165,29 @@ def send_message(request):
 
 # customer/views.py
 
- 
+from django.http import JsonResponse
+import json
+from django.views.decorators.csrf import csrf_exempt
+from .models import CartItem
 
+
+
+@csrf_exempt
+def save_cart(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        items_saved = []
+        for item in data.get('cartItems', []):
+            name = item.get('name')
+            price = item.get('price')  # No need to check if it's None; the model allows null
+            quantity = item.get('quantity', 1)  # Default to 1 if quantity is missing
+
+            cart_item = CartItem.objects.create(name=name, price=price, quantity=quantity)
+            items_saved.append(cart_item.name)
+
+        return JsonResponse({'message': f"Cart saved successfully! Items saved: {items_saved}"}, status=200)
+
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
 
