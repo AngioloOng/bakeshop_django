@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 
 
+
 class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -35,11 +36,9 @@ class User(models.Model):
         return self.name
 
 
-from django.db import models
-
 class CartItem(models.Model):
     name = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     quantity = models.IntegerField()
 
     def __str__(self):
