@@ -1,15 +1,17 @@
 console.log("script.js is loaded and running");
+
+TOGGLE CART POPUP
+cartButton.addEventListener('click', function() {
+    console.log('Current display:', cartPopup.style.display); // Add this to debug
+    cartPopup.style.display = cartPopup.style.display === 'none' ? 'block' : 'none';
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     const cartButton = document.getElementById('cartButton');
     const cartPopup = document.getElementById('cartPopup');
     const cartItems = document.getElementById('cartItems');
     const cartCount = document.getElementById('cartCount');
     let cart = {};
-
-    // Toggle the cart popup
-    cartButton.addEventListener('click', function() {
-        cartPopup.style.display = cartPopup.style.display === 'none' ? 'block' : 'none';
-    });
 
     // Add items to the cart
     document.querySelectorAll('.add-to-cart').forEach(button => {
@@ -64,34 +66,27 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
 document.getElementById('checkoutButton').addEventListener('click', function() {
     const cartData = {
-        cartItems: Object.values(cart)
+        cartItems: Object.values(cart) // assuming 'cart' is your cart object
     };
 
-    fetch('/save-cart/', {  // Ensure this URL is correct as per your Django URLs.
+    fetch('/save-cart/', { // Ensure this URL matches your Django URL configuration
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': getCookie('csrftoken')  // Ensuring CSRF token is sent with request.
+            'X-CSRFToken': csrftoken // This assumes you've correctly handled CSRF token
         },
         body: JSON.stringify(cartData)
     })
     .then(response => response.json())
     .then(data => {
-        if(data.status === "success") {
-            console.log('Checkout successful:', data.message);
-            alert('Checkout successful!');
-        } else {
-            throw new Error(data.message);
-        }
+        console.log('Success:', data);
+        alert("Checkout successful!"); // Provide some user feedback
     })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Checkout failed: ' + error.message);
-    });
+    .catch(error => console.error('Error:', error));
 });
+
 
 // Function to get CSRF token from cookies
 function getCookie(name) {
@@ -127,3 +122,5 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+
+

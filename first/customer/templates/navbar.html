@@ -1,7 +1,15 @@
 {% load static %}
 
+<script type="text/javascript">
+    var csrftoken = '{{ csrf_token }}';
+</script>
+
+
 <nav class="navbar">
     <div class="container d-flex justify-content-between">
+
+
+        
        
         <div class="d-flex align-items-center">
             <a href="{% url 'customer:customer_home' %}" class="navbar-brand">Cakeaholic</a>
@@ -48,4 +56,3 @@
     </div>
 </nav>
 
-<script src="{% static 'customer/script.js' %}"></script>
