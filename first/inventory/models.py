@@ -26,6 +26,7 @@ class inventoryItem(models.Model):
     description = models.CharField(max_length=200, null=True)
     quantity = models.FloatField(null=True)
     unit = models.CharField(max_length=5, null=True)
+    price = models.FloatField(null=True)
     item_pic = models.ImageField(null=True, blank=True)
     # price = models.DecimalField(max_digits=8, decimal_places=2, null=True)  # Adding a price field
     # vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
