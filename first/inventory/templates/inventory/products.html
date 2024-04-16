@@ -228,23 +228,6 @@ a.primary-btn:hover{
 
 
 	<script>
-		function sleep(time) {
-			return new Promise((resolve) => setTimeout(resolve, time));
-		}
-		function openPopup(counter){
-			var ID = "popup_" + counter;
-			document.getElementById(ID).classList.add("show");
-			document.getElementById(ID).classList.remove("hide");
-			document.getElementById(ID).classList.add("open-popup");
-		}
-		function closePopup(counter){
-			var ID = "popup_" + counter;
-			document.getElementById(ID).classList.remove("open-popup");
-			sleep(400).then(()=> {
-				document.getElementById(ID).classList.add("hide");
-				document.getElementById(ID).classList.remove("show");
-			});
-		}
 
 		function sleep(time) {
 			return new Promise((resolve) => setTimeout(resolve, time));
@@ -287,7 +270,7 @@ a.primary-btn:hover{
                                 <p class="card-text">Price: PHP {{ i.price }}</p>
                                 <p class="card-text">Quantity: {{ i.quantity }}</p>
                                 <div class="btn-container">
-                                    <a href="#!" class="primary-btn">Info</a>
+                                    <a href="#!" class="primary-btn" onclick="openPopup({{forloop.counter}})">INFO</a>
                                     <a href="{% url 'inventory:delete_product' i.id %}" class="delete-btn">Delete</a>
                                 </div>
                             </div>
