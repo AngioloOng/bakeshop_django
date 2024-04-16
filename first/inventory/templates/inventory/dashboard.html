@@ -18,20 +18,20 @@
 				</div>
 			</a>
 		</div>
-	<!--	
+
 		<div class="btn col-sm-12 col-md-12 col-lg-6">
-			<a href="{% url 'inventory:inventory' %}">
+			<a href="{% url 'inventory:products' %}">
 				<div class="card inventory-card flex-row align-items-center text-left" style="gap: 40px;">
 					<img class="dashboard-header-img" src="{% static 'inventory/images/pastries.jpg' %}"/>
 					<div class="dashboard-label">
-						<h1 class="dashboard-label">Pastries in Stock</h1>
+						<h1 class="dashboard-label">Pastries</h1>
 					</div>
 				</div>
 			</a>
 		</div>
 	
 
-		<div class="btn col-sm-12 col-md-12 col-lg-6">
+		{% comment %} <div class="btn col-sm-12 col-md-12 col-lg-6">
 			<a href="{% url 'inventory:new_order' %}">
 				<div class="card inventory-card flex-row align-items-center text-left" style="gap: 40px;">
 					<img class="dashboard-header-img" src="{% static 'inventory/images/inbox.jpg' %}"/>
@@ -41,7 +41,7 @@
 				</div>
 			</a>
 		</div>
-	-->
+	 {% endcomment %}
 		<div class="btn col-sm-12 col-md-12 col-lg-6">
 			<a class="nav-item" href="{% url 'inventory:delivery' %}">
 				<div class="card inventory-card flex-row align-items-center text-left" style="gap: 40px;">
