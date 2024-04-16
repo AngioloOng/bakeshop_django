@@ -22,7 +22,7 @@
                     <h1>Cakeaholic</h1>
                 </a>
             </li>
-            <li class="nav-item {% if url_name == 'inventory' %}active{% endif %}">
+            <li class="nav-item {% if url_name == 'inventory' %}{% endif %}">
                 <a class="nav-link" href="{% url 'inventory:products' %}">
                     <h2>Inventory</h2>
                 </a>
