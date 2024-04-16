@@ -30,12 +30,22 @@
     .nav-link:hover, .navbar-brand:hover {
         color: #cccccc; /* Adjust hover color as necessary */
     }
+
+    
+    .banner-image {
+        width: 100%;
+        background-image: url('{% static "images/2.jpg" %}');
+        background-size: cover;
+        background-position: center;
+    }
 </style>
 </head>
 <body>
 
  
-    {% include 'navbaralt.html' %}
+    {% include 'navbar.html' %}
+    {% include 'banner.html' %}
+
 
 
     <script>

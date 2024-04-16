@@ -5,6 +5,20 @@
 }
 
 
+.mt-5{
+    padding-top: 50px;
+}
+@font-face {
+    font-family: 'SF-Pro-Display-Black';
+    src: url('../fonts/SF-Pro-Display-Black.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+.navbar-brand {
+ font-family: 'SF-Pro-Display-Black';
+}
+
 .nav-link, .navbar-brand {
     /* font-family: 'SF-Pro-Display-Black'; */
     font-weight: 500; /* Adjust weight as necessary */
@@ -414,6 +428,14 @@ body .nav-link:hover, body .logout-button:hover {
     max-width: 100%;  /* Ensures card does not exceed the column width */
 }
 
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -543,4 +565,6 @@ body .nav-link:hover, body .logout-button:hover {
     margin-right: 10px; /* Spacing between the input field and any following content */
     text-align: center; /* Center the quantity number */
 }
+
+/* BANNER */
 
