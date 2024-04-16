@@ -117,3 +117,9 @@ def deleteDeliveryOrder(request,pk):
 	context = {'order': order}
 	return render(request, 'inventory/delete_order.html', context)
 
+def all_orders(request):
+    orders = Order.objects.all()
+    context = {
+        'orders': orders
+    }
+    return render(request, 'inventory/all_orders.html', context)
