@@ -273,7 +273,7 @@ a.primary-btn:hover{
                                 <p class="card-text">Price: PHP {{ i.price }}</p>
                                 <p class="card-text">Quantity: {{ i.quantity }}</p>
                                 <div class="btn-container">
-                                    <a href="#!" class="primary-btn">Info</a>
+                                    {% comment %} <a href="#!" class="primary-btn">Info</a> {% endcomment %}
                                     <a href="{% url 'inventory:delete_product' i.id %}" class="delete-btn">Delete</a>
                                 </div>
                             </div>
