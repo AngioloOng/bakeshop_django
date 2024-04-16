@@ -201,6 +201,10 @@ a.primary-btn:hover{
 	outline: none;
 }
 
+.unit-text col-2{
+    font-size: 10px;
+}
+
 </style>
 
 <body>
@@ -250,37 +254,38 @@ a.primary-btn:hover{
 
 	<a href="{% url 'inventory:add_product'%}" class="floating-btn">+</a>
 
+
 	<div class="col">
 		<div class="row">
 			{% for i in items%}
 
-			<div class="btn col-sm-6 col-lg-3">
-				<div class="card inventory-card">
+            <div class="container py-5">
+                <h2 class="mb-4">Our Products</h2>
+                <div class="row">
+                    {% for i in items %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            {% if i.image %}
+                            <img class="card-img-top" src="{{ i.image.url }}" alt="{{ i.name }}">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ i.name | truncatechars:15 }}</h5>
+                                <p class="card-text">{{ i.description }}</p>
+                                <p class="card-text">Price: PHP {{ i.price }}</p>
+                                <p class="card-text">Quantity: {{ i.quantity }}</p>
+                                <div class="btn-container">
+                                    <a href="#!" class="primary-btn">Info</a>
+                                    <a href="{% url 'inventory:delete_product' i.id %}" class="delete-btn">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
 
-					<!-- IMAGE/UNITS HANDLER -->
-					<div class="image-container">
-						{% if i.image %}
-						<img class="card-img-top" src="{{ i.image.url }}"/>
 
-						{% else %}
-						<img class="card-img-top" src="{% static 'inventory:images/img404.jpg' %}"/>
 
-						{% endif %}
-
-						<div class="overlay-text col-10">{{i.quantity}}</div>
-						<div class="unit-text col-2">{{i.price}}</div>
-					</div>
-
-					<!-- NAME OF ITEM -->
-					<h2 id="name_header" class="card-title">{{i.name | truncatechars:15}}</h2>
-
-					<!-- BUTTONS -->
-					<div class="btn-container">
-						<a href="#!" class="primary-btn" onclick="openPopup({{forloop.counter}})">INFO</a>
-						<a class="delete-btn" href="{%url 'inventory:delete_product' i.id%}">DELETE</a>
-					</div>
-				</div>
-			</div>
 			{% endfor %}
 		</div>
 	</div>
