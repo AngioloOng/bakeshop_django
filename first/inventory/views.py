@@ -13,6 +13,10 @@ def inventory(request):
 	item = inventoryItem.objects.all()
 	return render(request, 'inventory/inventory.html', {'item': item})
 
+def inventory(request):
+	item = inventoryItem.objects.all()
+	return render(request, 'inventory/products.html', {'item': item})
+
 def inventory_dashboard(request):
 	return render(request, 'inventory/dashboard.html')
 
@@ -117,3 +121,65 @@ def deleteDeliveryOrder(request,pk):
 	context = {'order': order}
 	return render(request, 'inventory/delete_order.html', context)
 
+def all_orders(request):
+    orders = Order.objects.all()
+    context = {
+        'orders': orders
+    }
+    return render(request, 'inventory/all_orders.html', context)
+
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def deleteOrder(request, pk):
+    if request.method == "POST":
+        item = get_object_or_404(CartItem, id=pk)
+        item.delete()
+        return JsonResponse({'status': 'success'}, safe=False)
+    return JsonResponse({'status': 'error'}, status=400)
+
+
+
+
+
+# product views
+
+# in your inventory/views.py
+
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import ProductItem
+from .forms import ProductItemForm
+
+def product_list(request):
+    products = ProductItem.objects.all()
+    return render(request, 'inventory/products.html', {'products': products})
+
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductItemForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('inventory:product_list')
+    else:
+        form = ProductItemForm()
+    return render(request, 'inventory/product_form.html', {'form': form})
+
+def edit_product(request, pk):
+    product = get_object_or_404(ProductItem, pk=pk)
+    if request.method == 'POST':
+        form = ProductItemForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('inventory:product_list')
+    else:
+        form = ProductItemForm(instance=product)
+    return render(request, 'inventory/product_form.html', {'form': form})
+
+def delete_product(request, pk):
+    product = get_object_or_404(ProductItem, pk=pk)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('inventory:product_list')
+    return render(request, 'inventory/delete_product.html', {'product': product})

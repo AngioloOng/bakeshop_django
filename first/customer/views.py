@@ -21,20 +21,16 @@ def customer_login(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
 
-        print("Entered Email:", email)  # Debugging output
-        print("Entered Password:", password)  # Debugging output
-
-      
         user = User.objects.filter(email=email).first()
 
-        print("Database Email:", user.email if user else None)  # Debugging output
-        print("Database Password:", user.password if user else None)  # Debugging output
-
-      
-        if user.email == email and user.password == password:
-           return redirect('customer:customer_dashboard')
+        if user and user.password == password:
+            return redirect('customer:customer_dashboard')
+        else:
+            error_message = "Invalid email or password. Please try again."
+            return render(request, 'customerLogin.html', {'error_message': error_message})
 
     return render(request, 'customerLogin.html')
+
 
 
 def customer_signup(request):
@@ -64,7 +60,7 @@ def customer_signup(request):
     return render(request, 'customerSignUp.html')
 
 def customer_dashboard(request):
-    items = inventoryItem.objects.all()  # Fetch all inventory items
+    items = inventoryItem.objects.all()  
     return render(request, 'customerDashboard.html', {'items': items})
 
 def customer_about(request):
