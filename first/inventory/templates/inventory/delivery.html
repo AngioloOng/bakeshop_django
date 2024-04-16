@@ -7,40 +7,55 @@
 <style type="text/css">
 	/*Button style*/
 	.btn-add { 
-            width: 80px; 
-            height: 80px; 
-            border-radius: 25px; 
-            background: #731436;
-            font-size: 50px; 
-            text-align: center; 
-            border: none;
-            position: fixed;
-            border-radius: 50%;
-            color: white;
-            right: 20px;
-            bottom: 20px;
-        }
+        width: 80px; 
+        height: 80px; 
+        border-radius: 25px; 
+        background: #731436;
+        font-size: 50px; 
+        text-align: center; 
+        border: none;
+        position: fixed;
+        border-radius: 50%;
+        color: white;
+        right: 20px;
+        bottom: 20px;
+    }
 
     a.delete-btn{
-			border-radius: 28px;
-			color: #ffffff;
-			font-size: 20px;
-			background: #ff0000;
-			padding: 10px 20px 10px 20px;
-			text-decoration: none;
-			max-width: 100px;
-			margin-left: auto;
-			margin-right: auto;
-			margin-bottom: 10px;
-		}
-	a.inventory-card-delivery{
-		border-radius: 10px;
-	}
-	a.delete-btn{
-		position: absolute;
+        border-radius: 28px;
+        color: #ffffff;
+        font-size: 20px;
+        background: #ff0000;
+        padding: 10px 20px;
+        text-decoration: none;
+        position: absolute;
         bottom: 10px;
         right: 10px;
-	}
+        z-index: 1;
+    }
+
+    a.edit-btn{
+        border-radius: 28px;
+        color: #621436;
+        font-size: 20px;
+        background: #ff8000;
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        right: 100px;
+        margin-bottom: 10px;
+        display: block;
+        float: left;
+    }
+
+    .btn-container {
+        text-align: right;
+        position: relative;
+    }
+
+    a.inventory-card-delivery {
+        border-radius: 10px;
+    }
 
 
 </style>
@@ -70,6 +85,7 @@
 							</h4>
 						</div>
 						<div class="btn-container">
+							<a class="edit-btn" href="{%url 'inventory:update_order' i.id%}" style="text-align: right;">EDIT</a>
 							<a class="delete-btn" href="{%url 'inventory:deleteDelivOrder' i.id%}" style="text-align: right;">DELETE</a>
 						</div>
 					</div>
