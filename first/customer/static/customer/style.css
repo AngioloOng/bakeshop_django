@@ -1,5 +1,21 @@
 
 
+.navbar {
+    font-family: 'Roboto', sans-serif; /* This specifically targets the navbar */
+}
+
+
+.nav-link, .navbar-brand {
+    /* font-family: 'SF-Pro-Display-Black'; */
+    font-weight: 500; /* Adjust weight as necessary */
+    color: #ffffff; /* Adjust color as necessary */
+
+}
+
+.nav-link:hover, .navbar-brand:hover {
+    color: #cccccc; /* Adjust hover color as necessary */
+}
+
 .login-container {
     background-color: #fff;
     padding: 40px;
@@ -106,22 +122,27 @@ a:hover {
     }
 } */
 
+body, html {
+    
+    font-family: 'Roboto', sans-serif; /* This applies the font globally */
+}
+
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f0f0;
     line-height: 1.6;
-    padding-top: 70px; /* Adjust to ensure content doesn't hide under the navbar */
-    
+    /* padding-top: 70px; Adjust to ensure content doesn't hide under the navbar */
 
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; /* Changed from row to column */
+    justify-content: flex-start; /* Align items from the start vertically */
+    align-items: center; /* Keeps center alignment horizontally */
     min-height: 100vh; /* Use the full height of the viewport */
-    background-color: #f0f0f0;
+   
     padding: 0; /* Remove any default padding */
     margin: 0; /* Remove any default margin */
 }
+
 
 /* Ensuring the navbar has the right color */
 body .navbar {
@@ -397,6 +418,10 @@ body .nav-link:hover, body .logout-button:hover {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.mb-4{
+    padding-top: 50px;
 }
 
 
