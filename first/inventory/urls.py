@@ -27,4 +27,9 @@ urlpatterns = [
     path('delete-order/<int:pk>/', views.deleteOrder, name='delete-order'),
     
     path('products/', views.products, name='products'),
+    
+    
+    path('products/delete/<int:pk>/', views.delete_product, name='delete_product'),
+    path('products/', views.products, name='products'),  # Ensure this is intended for listing products
+    path('add_product/', views.add_product, name='add_product'),
 ]

@@ -1,0 +1,290 @@
+{% extends 'inventory/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<meta charset="UTF-8">
+<meta https-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+<style>
+/*MAIN STYLE*/
+
+/*	FLOATING BUTTON STYLE*/
+.floating-btn{
+	width: 80px;
+	height: 80px;
+	background: #731436;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	border-radius: 50%;
+	color: white;
+	font-size: 60px;
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	z-index: 20;
+	transition: background 0.25s;
+	outline: blue;
+	border: none;
+	cursor: pointer;
+}
+.floating-btn:hover {
+	background: #621436;
+}
+
+/* MAIN ITEMS STYLE */
+.overlay-text {
+	position: absolute;
+	z-index: 15;
+	top: 50%; 
+	left: 50%; 
+	transform: translate(-50%, -50%); 
+	color: #fff;
+	text-shadow: 0 0 10px rgba(0, 0, 0, 0.75); 
+	padding: 10px 20px; 
+	font-size: 100px;
+	font-weight: bold;
+	font-family: 'Montserrat';
+	text-align: center;
+}
+.unit-text {
+	z-index: 15;
+	font-size: 50px;
+	top: 60%; 
+	left: 50%;
+	color: #8f1436;
+	font-weight: bold;
+	font-family: 'Montserrat';
+	text-shadow: 0 0 3px rgba(0, 0, 0, 0.75); 
+	text-align: right;
+	position: absolute;
+}
+a.delete-btn{
+	border-radius: 28px;
+	color: #ffffff;
+	font-size: 20px;
+	background: #ff0000;
+	padding: 10px 20px 10px 20px;
+	text-decoration: none;
+	max-width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+}
+a.delete-btn:hover{
+	background: #910000;
+	text-decoration: none;
+}
+a.primary-btn{
+	border-radius: 28px;
+	color: #ffffff;
+	font-size: 20px;
+	background: #008800;
+	padding: 10px 30px 10px 30px;
+	text-decoration: none;
+	max-width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+}
+a.primary-btn:hover{
+	background: #005500;
+	text-decoration: none;
+}
+.btn-container{
+	height: 50px;
+}
+.card-title{
+	font-size: 3.0vw;
+	font-family: 'Montserrat';
+	color: #731436;
+	text-align: center;
+	padding: 10px;
+}
+
+/* IMAGE STYLES */
+.image-container{
+	position: relative;
+	display: inline-block;
+	
+}
+.image-container img {
+	display: block;
+	max-height: 400px;
+	min-height: 400px;
+	max-width: 500px;
+	position: relative;
+	z-index: 11;
+	-webkit-filter: brightness(80%);
+}
+.card-img-top{
+	border-top-left-radius: 50px;
+	border-top-right-radius: 50px;
+	z-index: 10;
+}
+.inventory-card {
+	border-radius: 50px;
+}
+
+/* DESCRIPTION STYLES */
+.popup{
+	z-index: 101;
+	width: 400px;
+	background: #fff;
+	border-radius: 50px;
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.1);
+	text-align: center;
+	padding: 0 30px 30px;
+	color: #333;
+	visibility: hidden;
+	transition: transform 0.4s, top 0.4s;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.popup img{
+	max-width: 200px;
+	max-height: 200px;
+	margin-top: -100px;
+	border-radius: 50px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+.popup h2{
+	font-size: 38px;
+	font-weight: 500;
+	font-family: 'Montserrat';
+	margin: 30px 0 10px;
+}
+.popup button{
+	width: 100%;
+	margin-top: 20px;
+	padding: 10px 0;
+	background: #621436;
+	color: #fff;
+	border: 0;
+	outline: none;
+	font-size: 18px;
+	font-family: 'Montserrat';
+	border-radius: 25px;
+	cursor: pointer;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+.open-popup{
+	top: 50%;
+	transform: translate(-50%, -50%) scale(1);
+}
+.show{
+	visibility: visible;
+}
+.hide{
+	visibility: hidden;
+}
+.edit-btn{
+	display: block;
+	margin-top: 20px;
+	width: 100%;
+	padding: 10px;
+	background-color: #621436; /* Button color */
+	color: #fff; /* Button text color */
+	text-decoration: none; /* Remove underline */
+	text-align: center; /* Center text */
+	border-radius: 25px;
+	border: 0;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+	font-size: 18px;
+	outline: none;
+}
+
+</style>
+
+<body>
+{% comment %}     
+    <div class="container">
+        <h2>Products</h2>
+        <div class="row">
+            {% for product in items %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p class="card-text">Price: ${{ product.price }}</p>
+                        <p class="card-text">Quantity: {{ product.quantity }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div> {% endcomment %}
+    
+
+	<script>
+		function sleep(time) {
+			return new Promise((resolve) => setTimeout(resolve, time));
+		}
+		function openPopup(counter){
+			var ID = "popup_" + counter;
+			document.getElementById(ID).classList.add("show");
+			document.getElementById(ID).classList.remove("hide");
+			document.getElementById(ID).classList.add("open-popup");
+		}
+		function closePopup(counter){
+			var ID = "popup_" + counter;
+			document.getElementById(ID).classList.remove("open-popup");
+			sleep(400).then(()=> {
+				document.getElementById(ID).classList.add("hide");
+				document.getElementById(ID).classList.remove("show");
+			});
+		}
+		
+	</script>
+
+	<a href="{% url 'inventory:add_product'%}" class="floating-btn">+</a>
+
+	<div class="col">
+		<div class="row">
+			{% for i in items%}
+
+			<div class="btn col-sm-6 col-lg-3">
+				<div class="card inventory-card">
+
+					<!-- IMAGE/UNITS HANDLER -->
+					<div class="image-container">
+						{% if i.image %}
+						<img class="card-img-top" src="{{ i.image.url }}"/>
+
+						{% else %}
+						<img class="card-img-top" src="{% static 'inventory:images/img404.jpg' %}"/>
+
+						{% endif %}
+
+						<div class="overlay-text col-10">{{i.quantity}}</div>
+						<div class="unit-text col-2">{{i.price}}</div>
+					</div>
+
+					<!-- NAME OF ITEM -->
+					<h2 id="name_header" class="card-title">{{i.name | truncatechars:15}}</h2>
+
+					<!-- BUTTONS -->
+					<div class="btn-container">
+						<a href="#!" class="primary-btn" onclick="openPopup({{forloop.counter}})">INFO</a>
+						<a class="delete-btn" href="{%url 'inventory:delete_product' i.id%}">DELETE</a>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+
+</body>
+
+{% endblock content%}

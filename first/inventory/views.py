@@ -13,10 +13,6 @@ def inventory(request):
 	item = inventoryItem.objects.all()
 	return render(request, 'inventory/inventory.html', {'item': item})
 
-def inventory(request):
-	item = inventoryItem.objects.all()
-	return render(request, 'inventory/products.html', {'item': item})
-
 def inventory_dashboard(request):
 	return render(request, 'inventory/dashboard.html')
 
@@ -33,18 +29,6 @@ def new_order(request):
 
 def customer(request):
 	return render(request, 'inventory/customer.html')
-
-def createItem(request):
-	form = itemForm()
-	if request.method == 'POST':
-		form = itemForm(request.POST, request.FILES)
-		if form.is_valid():
-			form.save()
-			return redirect('/inventory/inventory')
-
-	context = {'form': form}
-	return render(request, 'inventory/item_form.html', context)
-
 
 
 
@@ -147,13 +131,11 @@ def deleteOrder(request, pk):
 # product views
 
 # in your inventory/views.py
-
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import ProductItem
-from .forms import ProductItemForm
+from django.shortcuts import render, redirect
+from .models import Product
 
 def product_list(request):
-    products = ProductItem.objects.all()
+    products = Product.objects.all()
     return render(request, 'inventory/products.html', {'products': products})
 
 def add_product(request):
@@ -161,25 +143,42 @@ def add_product(request):
         form = ProductItemForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('inventory:product_list')
+            return redirect('/inventory/products')
     else:
         form = ProductItemForm()
     return render(request, 'inventory/product_form.html', {'form': form})
 
-def edit_product(request, pk):
-    product = get_object_or_404(ProductItem, pk=pk)
+
+
+
+def createItem(request):
+	form = itemForm()
+	if request.method == 'POST':
+		form = itemForm(request.POST, request.FILES)
+		if form.is_valid():
+			form.save()
+			return redirect('/inventory/inventory')
+
+	context = {'form': form}
+	return render(request, 'inventory/item_form.html', context)
+
+
+
+from django.shortcuts import render, redirect
+from .models import ProductItem
+from .forms import ProductItemForm
+
+def products(request):
+    items = ProductItem.objects.all()
+    form = ProductItemForm()
     if request.method == 'POST':
-        form = ProductItemForm(request.POST, request.FILES, instance=product)
+        form = ProductItemForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('inventory:product_list')
-    else:
-        form = ProductItemForm(instance=product)
-    return render(request, 'inventory/product_form.html', {'form': form})
+            return redirect('inventory:products')  # Refresh the page to show new item
+    return render(request, 'inventory/products.html', {'items': items, 'form': form})
 
 def delete_product(request, pk):
-    product = get_object_or_404(ProductItem, pk=pk)
-    if request.method == 'POST':
-        product.delete()
-        return redirect('inventory:product_list')
-    return render(request, 'inventory/delete_product.html', {'product': product})
+    product = ProductItem.objects.get(id=pk)
+    product.delete()
+    return redirect('inventory:products')
