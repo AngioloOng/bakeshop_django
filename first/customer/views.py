@@ -11,7 +11,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User as DjangoUser
 from .models import Product
 from django.shortcuts import render
-from inventory.models import inventoryItem
+from inventory.models import ProductItem
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
@@ -60,7 +60,7 @@ def customer_signup(request):
     return render(request, 'customerSignUp.html')
 
 def customer_dashboard(request):
-    items = inventoryItem.objects.all()  
+    items = ProductItem.objects.all()  
     return render(request, 'customerDashboard.html', {'items': items})
 
 def customer_about(request):
@@ -189,7 +189,7 @@ def save_cart(request):
 
 def customer_home(request):
     # Home page view, possibly a landing page or product listing
-    items = inventoryItem.objects.all()  # Retrieve all products from the database
+    items = ProductItem.objects.all()  # Retrieve all products from the database
     return render(request, 'customer_home.html', {'items': items})
 
 def cart_view(request):
