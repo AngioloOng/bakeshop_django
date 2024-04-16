@@ -48,6 +48,7 @@ class inventoryOrder(models.Model):
         default=NOT_PAID,
 		)
 	order = models.CharField(max_length = 60, null=True)
+	date_time = models.CharField(max_length = 60, null=True)
 
 	def __str__(self):
 		return self.name
