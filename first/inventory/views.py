@@ -46,6 +46,21 @@ def updateItem(request, pk):
 	context = {'form': form}
 	return render(request, 'inventory/item_form.html', context)
 
+
+
+def updateProduct(request, pk):
+	item = ProductItem.objects.get(id=pk)
+	form = ProductItemForm(instance=item)
+
+	if request.method == 'POST':
+		form = ProductItemForm(request.POST, request.FILES, instance=item)
+		if form.is_valid():
+			form.save()
+			return redirect('/inventory/products')
+
+	context = {'form': form}
+	return render(request, 'inventory/product_form.html', context)
+
 # def deleteItem(request, pk):
 # 	item = inventoryItem.objects.get(id=pk)
 
@@ -182,3 +197,7 @@ def delete_product(request, pk):
     product = ProductItem.objects.get(id=pk)
     product.delete()
     return redirect('inventory:products')
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+

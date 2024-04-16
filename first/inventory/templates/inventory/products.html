@@ -208,30 +208,44 @@ a.primary-btn:hover{
 </style>
 
 <body>
-{% comment %}     
-    <div class="container">
-        <h2>Products</h2>
-        <div class="row">
-            {% for product in items %}
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    {% if product.image %}
-                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">{{ product.description }}</p>
-                        <p class="card-text">Price: ${{ product.price }}</p>
-                        <p class="card-text">Quantity: {{ product.quantity }}</p>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div> {% endcomment %}
-    
+
+	{%for i in items%}
+	<div class="popup" id="popup_{{forloop.counter}}">
+		{% if i.image %}
+		<img src="{{ i.image.url }}"/>
+
+		{% else %}
+		<img src="{% static 'inventory/images/img404.jpg' %}"/>
+
+		{% endif %}
+		<h2 id="name-header">{{i.name}}</h2>
+		<p>{{i.description}}</p>
+		<a onclick="" class="edit-btn" href="{%url 'inventory:update_product' i.id%}">EDIT</a>
+		<button type="button" onclick="closePopup({{forloop.counter}})">CANCEL</button>
+	</div>
+	{%endfor%}
+
+
 
 	<script>
+		function sleep(time) {
+			return new Promise((resolve) => setTimeout(resolve, time));
+		}
+		function openPopup(counter){
+			var ID = "popup_" + counter;
+			document.getElementById(ID).classList.add("show");
+			document.getElementById(ID).classList.remove("hide");
+			document.getElementById(ID).classList.add("open-popup");
+		}
+		function closePopup(counter){
+			var ID = "popup_" + counter;
+			document.getElementById(ID).classList.remove("open-popup");
+			sleep(400).then(()=> {
+				document.getElementById(ID).classList.add("hide");
+				document.getElementById(ID).classList.remove("show");
+			});
+		}
+
 		function sleep(time) {
 			return new Promise((resolve) => setTimeout(resolve, time));
 		}
@@ -273,7 +287,7 @@ a.primary-btn:hover{
                                 <p class="card-text">Price: PHP {{ i.price }}</p>
                                 <p class="card-text">Quantity: {{ i.quantity }}</p>
                                 <div class="btn-container">
-                                    {% comment %} <a href="#!" class="primary-btn">Info</a> {% endcomment %}
+                                    <a href="#!" class="primary-btn">Info</a>
                                     <a href="{% url 'inventory:delete_product' i.id %}" class="delete-btn">Delete</a>
                                 </div>
                             </div>

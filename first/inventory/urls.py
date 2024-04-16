@@ -32,4 +32,6 @@ urlpatterns = [
     path('products/delete/<int:pk>/', views.delete_product, name='delete_product'),
     path('products/', views.products, name='products'),  # Ensure this is intended for listing products
     path('add_product/', views.add_product, name='add_product'),
+    path('update_product/<str:pk>/', views.updateProduct, name='update_product'),
+
 ]
